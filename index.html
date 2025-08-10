@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1a1a1a, #333);
+        color: white;
+        transition: background 0.5s ease;
+    }
+
+    header {
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    /* Animasi teks */
+    h1 {
+        font-size: 2.5em;
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    p {
+        font-size: 1.2em;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Area sosial media (ganti portofolio) */
+    .portfolio {
+        padding: 50px 20px;
+        text-align: center;
+        transition: background 0.5s ease;
+    }
+
+    .portfolio:hover {
+        background: linear-gradient(135deg, #222, #555);
+    }
+
+    /* Foto profil */
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Link sosial media vertikal */
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-links a {
+        display: block;
+        width: 200px;
+        padding: 10px;
+        background: #ff4b2b;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+        background: #ff6f61;
+        transform: scale(1.05);
+    }
+  
+  .social-links a i {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+    /* Skill */
+    .skills {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .skill {
+        margin-bottom: 20px;
+        text-align: left;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .skill-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .skill-bar {
+        background: #444;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .skill-fill {
+        height: 20px;
+        width: 0;
+        background: linear-gradient(90deg, #ff4b2b, #ff6f61);
+        border-radius: 20px;
+        transition: width 1.5s ease;
+    }
+
+    /* Quote */
+    .quote {
+        font-style: italic;
+        margin-top: 30px;
+        font-size: 1.1em;
+        opacity: 0.9;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #111;
+        font-size: 0.9em;
+        opacity: 0.8;
+    }
+
+    /* Animasi */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Halo, Saya Aresz</h1>
+    <p>Seorang Programer</p>
+</header>
+
+<section class="portfolio">
+    <h2>Sosial Media</h2>
+    <p>Sosial Media Saya</p>
+    <div class="social-links">
+       <a href="https://www.instagram.com/planetpari7?igsh=MXdwNmdrNjczNWFwOQ==" target="_blank">
+    <i class="fab fa-instagram"></i> Instagram
+</a>
+<a href="https://www.tiktok.com/@resxri?_t=ZS-8ylBec6Eaie&_r=1" target="_blank">
+    <i class="fab fa-tiktok"></i> Tiktok
+</a>
+<a href="https://github.com/Parzzx" target="_blank">
+    <i class="fab fa-github"></i> Github
+</a>
+    </div>
+</section>
+
+<section class="skills" id="skills">
+    <h2>Level Of Ease</h2>
+    <div class="skill">
+        <div class="skill-name">HTML</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">CSS</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="10%"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="5%"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">C#</div>
+        <div class="skill-bar"><div class="skill-fill" data-width="0%"></div></div>
+    </div>
+
+    <div class="quote">"Jangan pernah berhenti belajar, karena hidup tidak pernah berhenti mengajar."</div>
+</section>
+
+<footer>
+    By Aresz
+</footer>
+
+<script>
+    // Animasi skill saat scroll
+    window.addEventListener('scroll', function() {
+        let skillsSection = document.getElementById('skills');
+        let skillsPosition = skillsSection.getBoundingClientRect().top;
+        let screenPosition = window.innerHeight / 1.2;
+
+        if (skillsPosition < screenPosition) {
+            document.querySelectorAll('.skill-fill').forEach(bar => {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
