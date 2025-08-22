@@ -20,29 +20,36 @@
         padding: 50px 20px;
     }
 
-    /* Animasi teks */
     h1 {
         font-size: 2.5em;
         animation: fadeInDown 1s ease-in-out;
     }
 
-    p {
+    /* Typewriter */
+    .typewriter {
         font-size: 1.2em;
-        animation: fadeIn 2s ease-in-out;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: .15em solid white;
+        display: inline-block;
+        animation: blink .75s step-end infinite alternate;
     }
 
-    /* Area sosial media (ganti portofolio) */
-    .portfolio {
+    @keyframes blink {
+        to { border-color: transparent; }
+    }
+
+    /* Area sosial media */
+    .About {
         padding: 50px 20px;
         text-align: center;
         transition: background 0.5s ease;
     }
 
-    .portfolio:hover {
+    .About:hover {
         background: linear-gradient(135deg, #222, #555);
     }
 
-    /* Foto profil */
     .profile-pic {
         width: 150px;
         height: 150px;
@@ -52,7 +59,6 @@
         animation: fadeIn 2s ease-in-out;
     }
 
-    /* Link sosial media vertikal */
     .social-links {
         display: flex;
         flex-direction: column;
@@ -78,12 +84,12 @@
         transform: scale(1.05);
     }
   
-  .social-links a i {
-    margin-right: 8px;
-    font-size: 18px;
-  }
+    .social-links a i {
+        margin-right: 8px;
+        font-size: 18px;
+    }
 
-    /* Skill */
+    /* Skills */
     .skills {
         padding: 50px 20px;
         text-align: center;
@@ -116,7 +122,6 @@
         transition: width 1.5s ease;
     }
 
-    /* Quote */
     .quote {
         font-style: italic;
         margin-top: 30px;
@@ -124,7 +129,6 @@
         opacity: 0.9;
     }
 
-    /* Footer */
     footer {
         text-align: center;
         padding: 15px;
@@ -133,7 +137,6 @@
         opacity: 0.8;
     }
 
-    /* Animasi */
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -149,23 +152,25 @@
 
 <header>
     <h1>Halo, Saya Aresz</h1>
-    <p>Seorang Programer</p>
+    <p>
+      <span class="typewriter" id="typewriter"></span>
+    </p>
 </header>
 
-<section class="portfolio">
+<section class="About">
     <img src="profileweb.jpeg" alt="Foto Profil" class="profile-pic">
     <h2>Sosial Media</h2>
     <p>Sosial Media Saya</p>
     <div class="social-links">
        <a href="https://www.instagram.com/planetpari7?igsh=MXdwNmdrNjczNWFwOQ==" target="_blank">
-    <i class="fab fa-instagram"></i> Instagram
-</a>
-<a href="https://www.tiktok.com/@resxri?_t=ZS-8ylBec6Eaie&_r=1" target="_blank">
-    <i class="fab fa-tiktok"></i> Tiktok
-</a>
-<a href="https://github.com/Parzzx" target="_blank">
-    <i class="fab fa-github"></i> Github
-</a>
+          <i class="fab fa-instagram"></i> Instagram
+       </a>
+       <a href="https://www.tiktok.com/@resxri?_t=ZS-8ylBec6Eaie&_r=1" target="_blank">
+          <i class="fab fa-tiktok"></i> Tiktok
+       </a>
+       <a href="https://github.com/Parzzx" target="_blank">
+          <i class="fab fa-github"></i> Github
+       </a>
     </div>
 </section>
 
@@ -207,6 +212,44 @@
                 bar.style.width = bar.getAttribute('data-width');
             });
         }
+    });
+
+    // Typewriter
+    const strings = [
+      "Selamat Datang",
+      "Di Website Pertamaku",
+      "Terimakasih"
+    ];
+    const typingSpeed = 150;
+    const deletingSpeed = 150;
+    const pauseAfterType = 1300;
+    const pauseAfterDelete = 650;
+    let current = 0, charIndex = 0, deleting = false;
+    const el = document.getElementById("typewriter");
+
+    function tick() {
+      const fullText = strings[current];
+      if (!deleting) {
+        el.textContent = fullText.slice(0, ++charIndex);
+        if (charIndex === fullText.length) {
+          deleting = true;
+          setTimeout(tick, pauseAfterType);
+          return;
+        }
+      } else {
+        el.textContent = fullText.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          current = (current + 1) % strings.length;
+          setTimeout(tick, pauseAfterDelete);
+          return;
+        }
+      }
+      setTimeout(tick, deleting ? deletingSpeed : typingSpeed);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(tick, 800);
     });
 </script>
 
